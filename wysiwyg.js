@@ -1,4 +1,3 @@
-var inputEl = document.getElementById("bioEdit");
 var people = [
   one = {
     title: "Samurai",
@@ -48,28 +47,28 @@ for (var i = 0; i < people.length; i++) {
   personEl.innerHTML += "<article class= " + '"' + "people" + '"' + ">" + "<header>" + people[i].name + ", " + people[i].title + "</header>" + "<section " + " id= " + '"' + "personCard" + '"' + ">" + "<p>" + people[i].bio + "</p>" + "<p>" + "<img src=" + '"' + people[i].image + '">' + "</section>" + "<footer>" + people[i].lifespan.birth + " - "  + people[i].lifespan.death + "</footer>" + "</article>";
 };
 
+var inputEl = document.getElementById("bioEdit");
 var specBio = document.getElementById("personCard").firstChild;
 
 // adds dotted border to container regardless of where you click inside the container -- adds dotted border
 personEl.addEventListener("click", function(e) {
-  event.target.closest("article").classList.add("clicked");
+  e.target.closest("article").classList.add("clicked");
 });
 
-// When you click on one of the person elements, the text input should immediately gain focus so that you can start typing.
+// focus on input whenever a person element is clicked
 personEl.addEventListener("click", function(e) {
   inputEl.focus();
 });
 
-// When there is a highlighted person element, and you begin typing in the input box, the person's biography should be immediately bound to what you are typing, letter by letter.
+// when user begins typing in the input box, bio is mirrored to input (but only works first element so far, regardless of which is clicked)
 inputEl.addEventListener("keyup", function(e) {
-  specBio.innerHTML = event.target.value;
+  specBio.innerHTML = e.target.value;
 }
   );
 
 
-// When you press the enter/return key when typing in the input field, then the content of the input field should immediately be blank.
-
-document.addEventListener("keydown", function(e) {
+// clear input field on enter key press
+document.addEventListener("keyup", function(e) {
   if(e.keyCode == 13){
     inputEl.value = "";
   }

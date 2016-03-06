@@ -25,6 +25,7 @@ input {
   height: 50%;
   display: inline-block;
   margin: 3%;
+  box-shadow: 5px 5px 3px darkgray;
 }
 
 .people:nth-child(2n) {

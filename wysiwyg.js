@@ -68,3 +68,9 @@ inputEl.addEventListener("keyup", function(e) {
 
 
 // When you press the enter/return key when typing in the input field, then the content of the input field should immediately be blank.
+
+document.addEventListener("keydown", function(e) {
+  if(e.keyCode == 13){
+    inputEl.value = "";
+  }
+});

@@ -44,14 +44,21 @@ var people = [
 var personEl = document.getElementById("personContainer");
 
 for (var i = 0; i < people.length; i++) {
-  personEl.innerHTML += "<article class= " + '"' + "people" + '"' + ">" + "<header>" + people[i].name + ", " + people[i].title + "</header>" + "<section " + " id= " + '"' + "personCard" + '"' + ">" + "<p>" + people[i].bio + "</p>" + "<p>" + "<img src=" + '"' + people[i].image + '">' + "</section>" + "<footer>" + people[i].lifespan.birth + " - "  + people[i].lifespan.death + "</footer>" + "</article>";
+  personEl.innerHTML += '<article class="people"><header>' + people[i].name + ', ' + people[i].title + '</header><section><p class="bioSection">' + people[i].bio + '</p><p><img src=' + people[i].image + '></section><footer>' + people[i].lifespan.birth + ' - '  + people[i].lifespan.death + '</footer></article>';
 };
 
 var inputEl = document.getElementById("bioEdit");
-var specBio = document.getElementById("personCard").firstChild;
+// var specBio = document.getElementByClassName("bioSection").firstChild;
+var pplContainer = document.getElementsByTagName("article");
+var clickedEl = document.getElementsByClassName("clicked");
+var bio = document.getElementsByClassName("bioSection");
+
 
 // adds dotted border to container regardless of where you click inside the container -- adds dotted border
 personEl.addEventListener("click", function(e) {
+  for (var i = 0; i < pplContainer.length; i++) {
+      pplContainer[i].classList.remove("clicked");
+  }
   e.target.closest("article").classList.add("clicked");
 });
 
@@ -62,10 +69,11 @@ personEl.addEventListener("click", function(e) {
 
 // when user begins typing in the input box, bio is mirrored to input (but only works first element so far, regardless of which is clicked)
 inputEl.addEventListener("keyup", function(e) {
-  specBio.innerHTML = e.target.value;
-}
-  );
-
+  clickedEl.innerHTML = e.target.value;
+  console.log(clickedEl);
+  console.log(pplContainer);
+  console.log(bio);
+});
 
 // clear input field on enter key press
 document.addEventListener("keyup", function(e) {
